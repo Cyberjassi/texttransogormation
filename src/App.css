@@ -1,0 +1,25 @@
+body{
+  background-color: rgb(163, 143, 143);
+  font-family: 'Balsamiq Sans', cursive;
+}
+.App {
+  text-align: center;
+}
+
+
+#nav{
+  justify-content: center;
+}
+#textnav{
+align-items: center;
+margin-left: 28vw;
+font-size: 40px;
+font-weight: bold;
+color: gray;
+}
+.container{
+  color: rgb(59, 54, 57);
+}
+.sub{
+  color: rgb(6, 55, 250);
+}l
