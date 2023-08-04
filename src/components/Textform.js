@@ -1,6 +1,7 @@
 //short command - rfc
 import React,{useState} from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
+import '../App.css';
 
 
 
@@ -41,6 +42,16 @@ export default function Textform(props) {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "))
   }
+  ///voive
+  const handleSpeakClick = (language) => {
+    if ('speechSynthesis' in window) {
+      const speechMessage = new SpeechSynthesisUtterance(text);
+      speechMessage.lang = language;
+      window.speechSynthesis.speak(speechMessage);
+    } else {
+      alert('Sorry, speech synthesis is not supported in your browser.');
+    }
+  };
 
   const [text,setText] = useState('');
   // text = "new text"; wrong way to change the state
@@ -48,7 +59,7 @@ export default function Textform(props) {
   return (
     <>
     <div className = "container">
-            <h1>{props.heading}</h1>
+            <h1 id='textform-heading'>{props.heading}</h1>
             <div classNameName="mb-3">
             <textarea className="form-control" placeholder = "Enter The Text" value = {text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
             </div>
@@ -57,7 +68,15 @@ export default function Textform(props) {
             <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear</button>
             <button className="btn btn-primary mx-2" onClick={handleFirstLaterCapital}>Capitalization</button>
             <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy</button>
+            <button className="btn btn-primary mx-2" onClick={handleReverseClick}>Reverse</button>
+
             <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+            <button className="btn btn-primary mx-2" onClick={() => handleSpeakClick('en')}>
+        Speak (English)
+      </button>
+      <button className="btn btn-primary mx-2" onClick={() => handleSpeakClick('hi')}>
+        Speak (Hindi)
+      </button>
     </div>
     <div className="container my-2">
       <h1>Your text summary</h1>
